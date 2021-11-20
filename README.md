@@ -10,7 +10,7 @@ This README contains the steps I do to install and configure a fully-functional 
 Download ArchISO from <https://archlinux.org/download/> and put on a USB drive with [Etcher](https://www.balena.io/etcher/), [Ventoy](https://www.ventoy.net/en/index.html), or [Rufus](https://rufus.ie/en/)
 
 If you don't want to build using this script I'll be uploading an image later.
-Consider supporting Chris Titus Tech (original creator) @ <https://www.christitus.com/arch-titus>'
+Consider supporting Chris Titus Tech (original creator) @ <https://www.christitus.com/arch-titus>
 
 ## Boot Arch ISO
 
