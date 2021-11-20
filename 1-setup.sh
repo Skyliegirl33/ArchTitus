@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 #-------------------------------------------------------------------------
-#   █████╗ ██████╗  ██████╗██╗  ██╗████████╗██╗████████╗██╗   ██╗███████╗
-#  ██╔══██╗██╔══██╗██╔════╝██║  ██║╚══██╔══╝██║╚══██╔══╝██║   ██║██╔════╝
-#  ███████║██████╔╝██║     ███████║   ██║   ██║   ██║   ██║   ██║███████╗
-#  ██╔══██║██╔══██╗██║     ██╔══██║   ██║   ██║   ██║   ██║   ██║╚════██║
-#  ██║  ██║██║  ██║╚██████╗██║  ██║   ██║   ██║   ██║   ╚██████╔╝███████║
-#  ╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝   ╚═╝   ╚═╝   ╚═╝    ╚═════╝ ╚══════╝
+#   ██████╗ ██╗   ██╗ █████╗  ██████╗██╗  ██╗     ██████╗ ███████╗
+#  ██╔═══██╗██║   ██║██╔══██╗██╔════╝██║ ██╔╝    ██╔═══██╗██╔════╝
+#  ██║   ██║██║   ██║███████║██║     █████╔╝     ██║   ██║███████╗
+#  ██║▄▄ ██║██║   ██║██╔══██║██║     ██╔═██╗     ██║   ██║╚════██║
+#  ╚██████╔╝╚██████╔╝██║  ██║╚██████╗██║  ██╗    ╚██████╔╝███████║
+#   ╚══▀▀═╝  ╚═════╝ ╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝     ╚═════╝ ╚══════╝ 
 #-------------------------------------------------------------------------
 echo "--------------------------------------"
 echo "--          Network Setup           --"
@@ -34,12 +34,21 @@ echo "       Setup Language to US and set locale       "
 echo "-------------------------------------------------"
 sed -i 's/^#en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen
 locale-gen
-timedatectl --no-ask-password set-timezone America/Chicago
+
+timedatectl list-timezones
+
+echo "Please set the correct timezone (example: America/Chicago):"
+read timezone
+
+timedatectl --no-ask-password set-timezone ${timezone}
 timedatectl --no-ask-password set-ntp 1
 localectl --no-ask-password set-locale LANG="en_US.UTF-8" LC_TIME="en_US.UTF-8"
 
+echo "Please set the keymap to use (example: us):"
+read keymap
+
 # Set keymaps
-localectl --no-ask-password set-keymap us
+localectl --no-ask-password set-keymap ${keymap}
 
 # Add sudo no password rights
 sed -i 's/^# %wheel ALL=(ALL) NOPASSWD: ALL/%wheel ALL=(ALL) NOPASSWD: ALL/' /etc/sudoers
@@ -49,6 +58,15 @@ sed -i 's/^#Para/Para/' /etc/pacman.conf
 
 #Enable multilib
 sed -i "/\[multilib\]/,/Include/"'s/^#//' /etc/pacman.conf
+
+# Add chaotic-aur
+pacman-key --recv-key FBA220DFC880C036 --keyserver keyserver.ubuntu.com
+pacman-key --lsign-key FBA220DFC880C036
+pacman -U --noconfirm 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar.zst' 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-mirrorlist.pkg.tar.zst'
+cat <<EOF > /etc/pacman.conf
+[chaotic-aur]
+Include = /etc/pacman.d/chaotic-mirrorlist 
+EOF
 pacman -Sy --noconfirm
 
 echo -e "\nInstalling Base System\n"
@@ -84,7 +102,7 @@ PKGS=(
 'btrfs-progs'
 'celluloid' # video players
 'cmatrix'
-'code' # Visual Studio code
+'vscodium' # Visual Studio code
 'cronie'
 'cups'
 'dialog'
@@ -120,6 +138,7 @@ PKGS=(
 'kate'
 'kcodecs'
 'kcoreaddons'
+'kcm-wacomtablet'
 'kdeplasma-addons'
 'kde-gtk-config'
 'kinfocenter'
@@ -148,13 +167,18 @@ PKGS=(
 'ntp'
 'okular'
 'openbsd-netcat'
+'obs-studio'
 'openssh'
 'os-prober'
 'oxygen'
 'p7zip'
+'performance-tweaks'
+'proton-ge-custom-bin'
+'protontricks-git'
 'pacman-contrib'
 'patch'
 'picom'
+'pipewire-support'
 'pkgconf'
 'plasma-meta'
 'plasma-nm'
@@ -170,11 +194,14 @@ PKGS=(
 'python-pip'
 'qemu'
 'rsync'
+'rpcs3-git'
 'sddm'
 'sddm-kcm'
 'snapper'
 'spectacle'
 'steam'
+'steam-native-runtime'
+'steamtinkerlaunch'
 'sudo'
 'swtpm'
 'synergy'
@@ -185,11 +212,17 @@ PKGS=(
 'unrar'
 'unzip'
 'usbutils'
+'ungoogled-chromium'
 'vim'
-'virt-manager'
+'virt-manager-meta'
+'virtualbox-meta'
+'vkbasalt'
 'virt-viewer'
+'vlc'
 'wget'
 'which'
+'wine-meta'
+'wine-staging'
 'wine-gecko'
 'wine-mono'
 'winetricks'
@@ -237,7 +270,7 @@ fi
 echo -e "\nDone!\n"
 if ! source install.conf; then
 	read -p "Please enter username:" username
-echo "username=$username" >> ${HOME}/ArchTitus/install.conf
+	echo "username=$username" >> ${HOME}/ArchTitus/install.conf
 fi
 if [ $(whoami) = "root"  ];
 then
