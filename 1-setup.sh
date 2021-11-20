@@ -224,7 +224,7 @@ for PKG in "${PKGS[@]}"; do
 done
 
 #
-# determine processor type and install microcode
+# Determine processor type and install microcode
 # 
 proc_type=$(lscpu | awk '/Vendor ID:/ {print $3}')
 case "$proc_type" in
@@ -240,7 +240,7 @@ case "$proc_type" in
 		;;
 esac	
 
-# Graphics Drivers find and install
+# Graphics Drivers
 if lspci | grep -E "NVIDIA|GeForce"; then
     pacman -S nvidia --noconfirm --needed
 	nvidia-xconfig
@@ -253,14 +253,14 @@ fi
 echo -e "\nDone!\n"
 if ! source install.conf; then
 	read -p "Please enter username:" username
-	echo "username=$username" >> ${HOME}/ArchTitus/install.conf
+	echo "username=$username" >> ${HOME}/QuackOS/install.conf
 fi
-if [ $(whoami) = "root"  ];
-then
+
+if [ $(whoami) = "root"  ]; then
     useradd -m -G wheel,libvirt -s /bin/bash $username 
 	passwd $username
-	cp -R /root/ArchTitus /home/$username/
-    chown -R $username: /home/$username/ArchTitus
+	cp -R /root/QuackOS /home/$username/
+    chown -R $username: /home/$username/QuackOS
 	read -p "Please name your machine:" nameofmachine
 	echo $nameofmachine > /etc/hostname
 else

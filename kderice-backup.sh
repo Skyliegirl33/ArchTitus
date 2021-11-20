@@ -1,5 +1,5 @@
 #!/bin/bash
 
-cp -r $HOME/.config/kitty $HOME/ArchTitus/dotfiles/kitty
+cp -r $HOME/.config/kitty $HOME/QuackOS/dotfiles/kitty
 konsave -s quackos
 konsave -e quackos

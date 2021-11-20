@@ -73,9 +73,9 @@ for PKG in "${PKGS[@]}"; do
 done
 
 export PATH=$PATH:~/.local/bin
-cp -r $HOME/ArchTitus/dotfiles $HOME
+cp -r $HOME/QuackOS/dotfiles $HOME
 pip install konsave
-konsave -i $HOME/ArchTitus/quackos.knsv
+konsave -i $HOME/QuackOS/quackos.knsv
 sleep 1
 konsave -a quackos
 
