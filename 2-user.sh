@@ -33,9 +33,13 @@ PKGS=(
 'noto-fonts-emoji'
 'papirus-icon-theme'
 'plasma-pa'
+'proton-ge-custom-bin'
+'protontricks-git'
 'ocs-url' # install packages from websites
 'sddm-nordic-theme-git'
 'snapper-gui-git'
+'steam-native-runtime'
+'steamtinkerlaunch'
 'starship'
 'tela-icon-theme'
 'inverse-icon-theme-git'
@@ -51,6 +55,7 @@ PKGS=(
 'ttf-meslo' # Nerdfont package
 'ttf-roboto'
 'snap-pac'
+'ungoogled-chromium'
 'yuzu-mainline-git'
 'yakuake'
 )
