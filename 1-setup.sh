@@ -260,8 +260,8 @@ if [ $(whoami) = "root"  ]; then
     useradd -m -G wheel,libvirt -s /bin/bash $username 
 	passwd $username
 	cp -R /root/QuackOS /home/$username/
-    chown -R $username: /home/$username/QuackOS
-	read -p "Please name your machine:" nameofmachine
+  chown -R $username: /home/$username/QuackOS
+  read -p "Please name your machine:" nameofmachine
 	echo $nameofmachine > /etc/hostname
 else
 	echo "You are already a user. Proceeding with AUR installation"
