@@ -11,6 +11,15 @@
 echo -e "\nINSTALLING AUR SOFTWARE\n"
 # You can solve users running this script as root with this and then doing the same for the next for statement. However I will leave this up to you.
 
+pacman-key --recv-key FBA220DFC880C036 --keyserver keyserver.ubuntu.com
+pacman-key --lsign-key FBA220DFC880C036
+pacman -U 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar.zst' 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-mirrorlist.pkg.tar.zst'
+
+cat <<EOF > /etc/pacman.conf
+[chaotic-aur]
+Include = /etc/pacman.d/chaotic-mirrorlist
+EOF
+
 echo "CLONING: YAY"
 cd ~
 git clone "https://aur.archlinux.org/yay.git"
@@ -22,12 +31,14 @@ PKGS=(
 'awesome-terminal-fonts'
 'firefox'
 'find-the-command'
+'discord'
 'dxvk-bin' # DXVK DirectX to Vulcan
 'github-desktop-bin' # Github Desktop sync
 'heroic-games-launcher-bin'
 'element-desktop'
 'mangohud' # Gaming FPS Counter
 'mangohud-common'
+'keepassxc'
 'noto-fonts-emoji'
 'plasma-pa'
 'proton-ge-custom-bin'
@@ -41,6 +52,7 @@ PKGS=(
 'starship'
 'tela-icon-theme'
 'inverse-icon-theme-git'
+'vscodium'
 'ttf-dejavu'
 'ttf-fantasque-sans-mono'
 'ttf-fira-code'
@@ -61,7 +73,7 @@ for PKG in "${PKGS[@]}"; do
 done
 
 export PATH=$PATH:~/.local/bin
-cp -r $HOME/ArchTitus/dotfiles/* $HOME/
+cp -r $HOME/ArchTitus/dotfiles $HOME
 pip install konsave
 konsave -i $HOME/ArchTitus/quackos.knsv
 sleep 1
