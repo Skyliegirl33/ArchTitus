@@ -25,16 +25,14 @@ PKGS=(
 'dxvk-bin' # DXVK DirectX to Vulcan
 'github-desktop-bin' # Github Desktop sync
 'heroic-games-launcher-bin'
-'lightly-git'
-'lightlyshaders-git'
 'element-desktop'
 'mangohud' # Gaming FPS Counter
 'mangohud-common'
 'noto-fonts-emoji'
-'papirus-icon-theme'
 'plasma-pa'
 'proton-ge-custom-bin'
 'protontricks-git'
+'rpcs3-git'
 'ocs-url' # install packages from websites
 'sddm-nordic-theme-git'
 'snapper-gui-git'
@@ -54,8 +52,6 @@ PKGS=(
 'ttf-hack'
 'ttf-meslo' # Nerdfont package
 'ttf-roboto'
-'snap-pac'
-'ungoogled-chromium'
 'yuzu-mainline-git'
 'yakuake'
 )

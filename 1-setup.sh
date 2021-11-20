@@ -182,7 +182,6 @@ PKGS=(
 'python-pip'
 'qemu'
 'rsync'
-'rpcs3-git'
 'sddm'
 'sddm-kcm'
 'snapper'
@@ -266,6 +265,6 @@ then
 	read -p "Please name your machine:" nameofmachine
 	echo $nameofmachine > /etc/hostname
 else
-	echo "You are already a user proceed with aur installs"
+	echo "You are already a user. Proceeding with AUR installation"
 fi
 
