@@ -39,6 +39,12 @@ systemctl stop dhcpcd.service
 systemctl enable NetworkManager.service
 systemctl enable bluetooth
 systemctl enable pacman-files.timer
+
+echo -e "\nCreating pacman files database"
+
+pacman -Fy
+pkgfile --update
+
 echo "
 ###############################################################################
 # Cleaning
