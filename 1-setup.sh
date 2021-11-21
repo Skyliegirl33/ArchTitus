@@ -250,6 +250,16 @@ elif lspci | grep -E "Integrated Graphics Controller"; then
     pacman -S libva-intel-driver libvdpau-va-gl lib32-vulkan-intel vulkan-intel libva-intel-driver libva-utils --needed --noconfirm
 fi
 
+# Add chaotic-aur
+pacman-key --recv-key FBA220DFC880C036 --keyserver keyserver.ubuntu.com
+pacman-key --lsign-key FBA220DFC880C036
+pacman -U 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar.zst' 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-mirrorlist.pkg.tar.zst'
+
+cat <<EOF > /etc/pacman.conf
+[chaotic-aur]
+Include = /etc/pacman.d/chaotic-mirrorlist
+EOF
+
 echo -e "\nDone!\n"
 if ! source install.conf; then
 	read -p "Please enter username:" username

@@ -11,15 +11,6 @@
 echo -e "\nINSTALLING AUR SOFTWARE\n"
 # You can solve users running this script as root with this and then doing the same for the next for statement. However I will leave this up to you.
 
-pacman-key --recv-key FBA220DFC880C036 --keyserver keyserver.ubuntu.com
-pacman-key --lsign-key FBA220DFC880C036
-pacman -U 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar.zst' 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-mirrorlist.pkg.tar.zst'
-
-cat <<EOF > /etc/pacman.conf
-[chaotic-aur]
-Include = /etc/pacman.d/chaotic-mirrorlist
-EOF
-
 echo "CLONING: YAY"
 cd ~
 git clone "https://aur.archlinux.org/yay.git"
