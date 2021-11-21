@@ -31,6 +31,7 @@ PKGS=(
 'awesome-terminal-fonts'
 'firefox'
 'find-the-command'
+'fish'
 'discord'
 'dxvk-bin' # DXVK DirectX to Vulcan
 'github-desktop-bin' # Github Desktop sync
