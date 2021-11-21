@@ -115,8 +115,11 @@ case $dualboot in
   y|Y|yes|Yes|YES)
     dual_boot
     ;;
-  *)
+  n|N|no|No|NO)
     format_disk
+    ;;
+  *)
+    exit
     ;;
 esac
 
