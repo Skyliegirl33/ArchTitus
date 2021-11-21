@@ -20,23 +20,27 @@ makepkg -si --noconfirm
 PKGS=(
 'autojump'
 'awesome-terminal-fonts'
+'bat'
 'firefox'
 'find-the-command'
 'fish'
+'fzf'
 'discord'
 'dxvk-bin' # DXVK DirectX to Vulcan
 'github-desktop-bin' # Github Desktop sync
 'heroic-games-launcher-bin'
 'element-desktop'
-'mcfly'
+'exa'
 'mangohud' # Gaming FPS Counter
 'mangohud-common'
+'micro'
 'latte-dock'
 'keepassxc'
 'noto-fonts-emoji'
 'plasma-pa'
 'proton-ge-custom-bin'
 'protontricks-git'
+'pkgfile'
 'rpcs3-git'
 'ocs-url' # install packages from websites
 'sddm-nordic-theme-git'
@@ -67,7 +71,7 @@ for PKG in "${PKGS[@]}"; do
 done
 
 xdg-user-dirs-update --force
-mkdir -p $HOME/.local/share
+mkdir -p $HOME/.local/share/kxmlgui5
 mkdir $HOME/.config
 mkdir $HOME/.themes
 
