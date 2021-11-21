@@ -28,8 +28,10 @@ PKGS=(
 'github-desktop-bin' # Github Desktop sync
 'heroic-games-launcher-bin'
 'element-desktop'
+'mcfly'
 'mangohud' # Gaming FPS Counter
 'mangohud-common'
+'latte-dock'
 'keepassxc'
 'noto-fonts-emoji'
 'plasma-pa'
@@ -63,6 +65,11 @@ PKGS=(
 for PKG in "${PKGS[@]}"; do
     yay -S --noconfirm $PKG
 done
+
+xdg-user-dirs-update --force
+mkdir -p $HOME/.local/share
+mkdir $HOME/.config
+mkdir $HOME/.themes
 
 export PATH=$PATH:~/.local/bin
 cp -r $HOME/QuackOS/dotfiles/. $HOME
